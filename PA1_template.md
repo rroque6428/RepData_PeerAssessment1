@@ -62,7 +62,7 @@ g + geom_histogram(aes(fill = ..count..), binwidth=700) +
     scale_fill_gradient("Count", low = "green", high = "red")
 ```
 
-![plot of chunk part1](figure/part1-1.png) 
+![](figure/part1-1.png) 
 
 ```r
 # Mean and Median of Total Steps per day
@@ -111,7 +111,7 @@ g + geom_line(color="blue") +
              size = 8, colour="red", alpha=0.3)
 ```
 
-![plot of chunk part2](figure/part2-1.png) 
+![](figure/part2-1.png) 
 Note that the interval **835** contains the maximum number of steps (**206.17**).
 
 ###Imputing missing values
@@ -163,7 +163,7 @@ g + geom_histogram(aes(fill = ..count..), binwidth=700) +
     scale_fill_gradient("Count", low = "green", high = "red")
 ```
 
-![plot of chunk part3](figure/part3-1.png) 
+![](figure/part3-1.png) 
 
 ```r
 # Mean and Median of Total Steps per day
@@ -205,4 +205,4 @@ g + geom_line(color="blue") +
     labs(x="Interval", y="Number of Steps")
 ```
 
-![plot of chunk part4](figure/part4-1.png) 
+![](figure/part4-1.png) 
