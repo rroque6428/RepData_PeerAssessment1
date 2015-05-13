@@ -1,9 +1,4 @@
 
----
-output: 
-  html_document:
-    keep_md: true
---- 
 #<span style="color:rgba(158, 162, 163, 1);">Reproducible Research</span>
 Peer Assessment 1  
 by **Ricardo Delamar Roque**  
