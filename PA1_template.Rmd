@@ -105,13 +105,15 @@ Note that the interval **`r m_x`** contains the maximum number of steps (**`r ro
 ###Imputing missing values
 "*Part 3 of the Assignment*"
 
+Imputing Strategy taken: **Mean of the 5-minute interval**
+
 ```{r part3}
 # Number of NA's in the dataset
 sum(is.na(dset$steps))
 
 # Remove all NA's
 # Calc the average Number of Steps for each Interval
-# We will need this to impute the average where a NA appears
+# We will need this to impute the average (mean) where a NA appears
 d <- dset %>%
     filter(!is.na(steps)) %>%
     group_by(interval) %>%

@@ -1,5 +1,9 @@
 
-
+---
+output: 
+  html_document:
+    keep_md: true
+--- 
 #<span style="color:rgba(158, 162, 163, 1);">Reproducible Research</span>
 Peer Assessment 1  
 by **Ricardo Delamar Roque**  
@@ -118,6 +122,8 @@ Note that the interval **835** contains the maximum number of steps (**206.17**)
 ###Imputing missing values
 "*Part 3 of the Assignment*"
 
+Imputing Strategy taken: **Mean of the 5-minute interval**
+
 
 ```r
 # Number of NA's in the dataset
@@ -131,7 +137,7 @@ sum(is.na(dset$steps))
 ```r
 # Remove all NA's
 # Calc the average Number of Steps for each Interval
-# We will need this to impute the average where a NA appears
+# We will need this to impute the average (mean) where a NA appears
 d <- dset %>%
     filter(!is.na(steps)) %>%
     group_by(interval) %>%

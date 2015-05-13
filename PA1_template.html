@@ -140,12 +140,13 @@ g + geom_line(color=&quot;blue&quot;) +
 <div id="imputing-missing-values" class="section level3">
 <h3>Imputing missing values</h3>
 <p>“<em>Part 3 of the Assignment</em>”</p>
+<p>Imputing Strategy taken: <strong>Mean of the 5-minute interval</strong></p>
 <pre class="r"><code># Number of NA's in the dataset
 sum(is.na(dset$steps))</code></pre>
 <pre><code>## [1] 2304</code></pre>
 <pre class="r"><code># Remove all NA's
 # Calc the average Number of Steps for each Interval
-# We will need this to impute the average where a NA appears
+# We will need this to impute the average (mean) where a NA appears
 d &lt;- dset %&gt;%
     filter(!is.na(steps)) %&gt;%
     group_by(interval) %&gt;%
