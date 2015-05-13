@@ -1,12 +1,5 @@
-```{r global_options, include=FALSE}
-knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='figure/',
-                      echo=TRUE, warning=FALSE, message=FALSE)
-```
----
-output: 
-  html_document:
-    keep_md: true
---- 
+
+
 #<span style="color:rgba(158, 162, 163, 1);">Reproducible Research</span>
 Peer Assessment 1  
 by **Ricardo Delamar Roque**  
@@ -14,7 +7,8 @@ May 2015
 
 ###Required Packages for this Assignment
 
-```{r reqpkgs}
+
+```r
 require(dplyr)
 require(ggplot2)
 require(lubridate)
@@ -23,7 +17,8 @@ require(lubridate)
 ###Loading and preprocessing the data
 I've included code to check if the csv/zip files are available.
 
-```{r loaddset}
+
+```r
 # Files for this Project
 zipfname <- "activity.zip"
 sdset <- "activity.csv"
@@ -54,7 +49,8 @@ dset <- read.csv(sdset)
 ### What is mean total number of steps taken per day?
 "*Part 1 of the Assignment*"
 
-```{r part1}
+
+```r
 # Group by 'date' and Summarize Number of Steps
 d <- dset %>% 
     group_by(date) %>% 
@@ -65,16 +61,32 @@ g <- ggplot(d, aes(x=sum_totsteps))
 
 g + geom_histogram(aes(fill = ..count..), binwidth=700) + 
     scale_fill_gradient("Count", low = "green", high = "red")
+```
 
+![plot of chunk part1](figure/part1-1.png) 
+
+```r
 # Mean and Median of Total Steps per day
 mean(d$sum_totsteps) 
+```
+
+```
+## [1] 9354.23
+```
+
+```r
 median(d$sum_totsteps)
+```
+
+```
+## [1] 10395
 ```
 
 ###What is the average daily activity pattern?
 "*Part 2 of the Assignment*"
 
-```{r part2}
+
+```r
 # Get rid of all NAs
 # Group by 'interval'
 # Calc the average number of steps for each 'interval'
@@ -98,17 +110,25 @@ g + geom_line(color="blue") +
               hjust=0, vjust=0.5) + 
     annotate("point", x=m_x, y=m_y, 
              size = 8, colour="red", alpha=0.3)
-
 ```
-Note that the interval **`r m_x`** contains the maximum number of steps (**`r round(m_y,2)`**).
+
+![plot of chunk part2](figure/part2-1.png) 
+Note that the interval **835** contains the maximum number of steps (**206.17**).
 
 ###Imputing missing values
 "*Part 3 of the Assignment*"
 
-```{r part3}
+
+```r
 # Number of NA's in the dataset
 sum(is.na(dset$steps))
+```
 
+```
+## [1] 2304
+```
+
+```r
 # Remove all NA's
 # Calc the average Number of Steps for each Interval
 # We will need this to impute the average where a NA appears
@@ -140,17 +160,33 @@ g <- ggplot(d, aes(x=sum_totsteps))
 
 g + geom_histogram(aes(fill = ..count..), binwidth=700) + 
     scale_fill_gradient("Count", low = "green", high = "red")
+```
 
+![plot of chunk part3](figure/part3-1.png) 
+
+```r
 # Mean and Median of Total Steps per day
 mean(d$sum_totsteps) 
+```
+
+```
+## [1] 10766.19
+```
+
+```r
 median(d$sum_totsteps)
+```
+
+```
+## [1] 10766.19
 ```
 The Histogram shows a small variation when we use records filled with the averages.
 
 ###Are there differences in activity patterns between weekdays and weekends?
 "*Part 4 of the Assigment*"
 
-```{r part4}
+
+```r
 # Create column 'daytype' that specifies if 'date' is a weekday or weekend
 # Transform the new field in a factor
 # Group by 'interval' and 'daytype'
@@ -167,3 +203,5 @@ g + geom_line(color="blue") +
     facet_wrap(~ daytype, nrow=2) + 
     labs(x="Interval", y="Number of Steps")
 ```
+
+![plot of chunk part4](figure/part4-1.png) 
